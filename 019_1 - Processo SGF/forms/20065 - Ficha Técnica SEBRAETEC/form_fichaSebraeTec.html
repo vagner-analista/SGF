@@ -1,0 +1,392 @@
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&amp;display=swap"/>
+		<link type='text/css' rel='stylesheet' href='https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css' />
+		<link type="text/css" rel='stylesheet' href='css/style.css'/>
+
+		<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+		<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+		<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.28/dist/sweetalert2.all.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="js/custom.js"></script>
+		<script type="text/javascript" src="js/fields_required.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+	</head>
+	<body>
+		<div class="fluig-style-guide">
+			<form name="form" role="form">
+
+				
+
+				<div class="panel panel-info">
+					<div class="panel-body css_body_margin">
+						<div class="row">
+							<div class="form-group col-md-12 css_header_img">
+								<!-- <img src="https://fluig.mt.sebrae.com.br/webdesk/streamcontrol/106770/0/0/logo.png" width="161px" height="73px" /> -->
+								<img src="logo.png" width="140px" height="93px" />
+								<label class="css_header_text">Cadastro de Ficha Técnica - SEBRAETEC - SEBRAE/MT</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<nav id="navbar-principal" class="navbar navbar-default no-border-navbar" role="navigation">
+					<div class="container-fluid no-border-container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar_fichaTecnica">
+								<span class="sr-only">Toggle navigation</span> 
+								<span class="icon-bar"></span> <span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"></a>
+						</div>
+						<div class="collapse navbar-collapse in" id="navBar_fichaTecnica">
+							<br>
+							<ul class="nav navbar-nav nav-principal">
+								<li id="tab_aba_solucao" class="active"><a href="#aba_solucao" role="tab" data-toggle="tab">Solução</a></li>
+								<li id="tab_aba_areaSolucao"><a href="#aba_areaSolucao" role="tab" data-toggle="tab">Área da Solução</a></li>
+								<li id="tab_aba_etapas"><a href="#aba_etapas" role="tab" data-toggle="tab">Etapas da Solução</a></li>
+								<li id="tab_aba_entregas"><a href="#aba_entregas" role="tab" data-toggle="tab">Entregas da Solução</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="tab-content">
+						<div class="tab-pane fade in active" id="aba_solucao">
+							<br>
+							<div class="panel panel-info" id="panel_solicitacao">
+								<div class="panel-heading">
+									<h3 class="panel-title">Ficha técnica - SEBRAETEC - SEBRAE/MT</h3>
+								</div>
+								<div class="panel-body css_body_margin">	
+									<div>
+										<input type="hidden" name="txt_anoCadastro" id="txt_anoCadastro" />
+									</div>								
+									<div class="row">
+									    
+									     <div class="form-group col-md-2">
+									        <label class="form-check-label">Cód. Solução</label>
+									        <input type="text" name="txt_codigoSolucao" id="txt_codigoSolucao" class="form-control" readonly/>
+									    </div>
+									    
+									    
+									     <div class="form-group col-md-2">
+									        <label class="form-check-label">Cód. Ficha Técnica</label>
+									        <input type="text" name="txt_codigoFichaTecnica" id="txt_codigoFichaTecnica" class="form-control"/>
+									    </div>
+									     
+									    
+									    <div class="form-group col-md-6">
+									        <label for="txt_solucao" class="form-check-label">Nome da ficha técnica <span class="required text-danger"><strong>*</strong></span></label>
+									        <input type="text" name="txt_solucao" id="txt_solucao" class="form-control" />
+									    </div>
+									
+									    <div class="form-group col-md-2 d-flex align-items-center">
+									        <div class="form-check">
+									        <br>
+									        	<label class="form-check-label" for="ck_ativo">Ativo <span class="required text-danger"><strong>*</strong></span></label>
+									            <input type="checkbox" name="ck_ativo" id="ck_ativo" value="sim" class="form-check-input" />
+									            
+									        </div>
+									    </div>
+									</div>
+									<br />
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label>Tipo de Solução</label><span class="required text-danger"><strong> *</strong></span>																	
+											<select name="select_solucao" id="select_solucao" class="form-control">
+												<option value="selecione"> Selecione o tipo da solução </option>
+												<option value="SGF"> 	   SGF </option>
+												<option value="Sebraetec"> SebraeTec </option>
+												<option value="empretec">  Empretec </option>
+												
+											</select>
+										</div>
+										
+										<div class="form-group col-md-4">
+											<label>Natureza do Serviço</label><span class="required text-danger"><strong> *</strong></span>																	
+											<select name="select_natureza" id="select_natureza" class="form-control">
+												<option value="selecione">   Selecione uma natureza </option>
+												<option value="consultoria"> Consultoria </option>
+												<option value="instrutoria"> Instrutoria </option>										
+												
+											</select>
+										</div>
+										
+										<!-- <div class="form-group col-md-4">
+											<label>Público-alvo</label><span class="required text-danger"><strong> *</strong></span>																	
+											<select name="select_porte" id="select_porte" class="form-control">
+												<option value="selecione"> Selecione o porte </option>
+												<option value="me"> ME </option>
+												<option value="epp"> EPP </option>	
+												<option value="mei_epp"> MEI/EPP </option>
+												<option value="mei_me"> MEI/ME </option>	
+												<option value="me_epp"> ME/EPP </option>
+												<option value="mei_me_epp"> MEI/ME/EPP </option>
+												<option value="estudante"> Estudante </option>	
+												<option value="professor"> Professor </option>											
+												
+											</select>
+										</div> -->
+										<div class="form-group col-md-2">
+											<label>Valor máximo</label><span class="required text-danger"><strong> *</strong></span>																	
+											<input type="text" name="txt_precoMaximo" id="txt_precoMaximo" class="form-control moeda" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label>Justificativa</label>
+											<textarea rows="6" cols="12" name="txt_justificativa" id="txt_justificativa" class="form-control"></textarea>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label>Objetivo</label>
+											<textarea rows="6" cols="12" name="txt_objetivo" id="txt_objetivo" class="form-control"></textarea>
+										</div>
+									</div>
+									<!-- <div class="row">
+										<div class="form-group col-md-12">
+											<label>Conteúdo</label>
+											<textarea rows="6" cols="12" name="txt_conteudo" id="txt_conteudo" class="form-control"></textarea>
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="aba_areaSolucao">
+							<br>
+							<div class="panel panel-info" id="panel_solucao">
+								<div class="panel-heading">
+									<h3 class="panel-title">Áreas da Solução</h3>
+								</div>
+								<div class="panel-body css_body_margin">
+									<br>
+									
+									<div class="row">
+                                         <div class="col-md-6">
+                                         		
+                                         		 <label>Área:</label>                                          
+		                                          <input type="zoom" id="z_area" name="z_area" data-zoom="{
+		                                             'displayKey':'dsArea',
+		                                             'maximumSelectionLength':'1',
+		                                             'datasetId':'ds_SGF_area',
+		                                             'fields':[
+		                                             {
+		                                             'field':'idArea',
+		                                             'label':'Codigo'
+		                                             },{
+		                                             'field':'dsArea',
+		                                             'label':'Descrição da Area',
+		                                             'standard':'true'
+		                                             }
+		                                             ]
+		                                       }" />
+                                         </div>
+                                       </div>
+                                       
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                          	<label>Sub Área:</label> 
+                                          
+                                        
+                                          <input type="zoom" id="z_subarea" name="z_subarea" data-zoom="{
+                                             'displayKey':'dsSubArea',
+                                             'maximumSelectionLength':'2',
+                                             'datasetId':'ds_SGF_subarea',
+                                             'fields':[
+                                             {
+                                             'field':'idSubArea',
+                                             'label':'Codigo'
+                                             },
+                                             {
+                                             'field':'dsSubArea',
+                                             'label':'SubArea',
+                                             'standard':'true'
+                                             }
+                                             ]
+                                             }" />
+                                          
+                                          </div>
+                                       </div>
+									
+									<!-- <div class="row">
+										<div class="col-md-12">
+										<br>
+												<div>
+													<button type="button" id="btn_addEntregasSolucao" name="btn_addAreas" class="btn btn btn-info" onclick="addFilho('tb_areasDaSolucao');" value="Novo">Adicionar Área</button>
+												</div>
+												<div>
+													<table id="tb_areasDaSolucao" tablename="tb_areasDaSolucao" class="table table-hover" noaddbutton="true" nodeletebutton="true" addbuttonclass="btn btn-default  btn-info">
+														<thead>
+															<tr>
+																<td style="min-width:5px;">
+																</td>
+	
+																<td style="min-width:150px;">
+																		<label>Descrição da entrega</label>
+																</td>
+	
+																<td style="min-width:300px;">
+																	<label>Entregas</label>
+																</td>
+															</tr>
+														</thead>
+	
+														<tbody>
+															<tr>
+	
+																<td style="width: 5%;">
+																	<button type="button" class="btn btn-default  btn-danger" id="del_tbAreaSolucao" name="del_tbAreaSolucao"	onclick="removeFilho(this);">X</button>
+																</td>
+																<td style="width: 30%;">
+																	
+																</td>
+	
+																<td style="width: 65%;">
+																		
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>	
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="aba_etapas">
+							<br>
+							<div class="panel panel-info" id="panel_etapas">
+								<div class="panel-heading">
+									<h3 class="panel-title">Etapas das soluções</h3>
+								</div>
+								<div class="panel-body css_body_margin">
+									
+									<div class="row">
+										<div class="col-md-12">
+										<br>
+												<div>
+													<button type="button" id="btn_addEtapas" name="btn_addEtapas" class="btn btn btn-info" onclick="addFilho('tb_etapas'); adicionaCodigoAutomaticoEtapas();" value="Novo">Adicionar Etapas</button>
+												</div>
+												<div>
+													<table id="tb_etapas" tablename="tb_etapas" class="table table-hover" noaddbutton="true" nodeletebutton="true" addbuttonclass="btn btn-default  btn-info">
+														<thead>
+															<tr>
+																<td style="min-width:5px;">
+																</td>
+																<td style="min-width:10px;">
+																	<label>Código da etapa</label>
+																</td>
+	
+																<td style="min-width:150px;">
+																		<label>Descrição da etapa</label>
+																</td>
+	
+																<td style="min-width:300px;">
+																	<label>Detalhes da etapa</label>
+																</td>
+															</tr>
+														</thead>
+	
+														<tbody>
+															<tr>
+	
+																<td style="width: 5%;">
+																	<button type="button" class="btn btn-default  btn-danger" id="del_tbEtapas" name="del_tbEtapas"	onclick="removeFilho(this);adicionaCodigoAutomaticoEtapas();">X</button>
+																</td>
+																
+																<td style="width: 10%;">
+																	<input type="text" name="txt_codEtapas" id="txt_codEtapas" class="form-control" readonly/>
+																</td>
+																<td style="width: 30%;">
+																	<input type="text" name="txt_etapas" id="txt_etapas" class="form-control"/>
+																</td>
+	
+																<td style="width: 65%;">
+																	<textarea rows="5" cols="8" name="ta_detalheEtapas" id="ta_detalheEtapas" class="form-control"></textarea>	
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>	
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="aba_entregas">
+							<br>
+							<div class="panel panel-info" id="panel_entregas">
+								<div class="panel-heading">
+									<h3 class="panel-title">Entregas das fichas técnicas</h3>
+								</div>
+								<div class="panel-body css_body_margin">
+									<div class="row">
+										<div class="col-md-12">
+										<br>
+												<div>
+													<button type="button" id="btn_addEntregasSolucao" name="btn_addEntregasSolucao" class="btn btn btn-info" onclick="addFilho('tb_entregasSolucao'); adicionaCodigoAutomaticoEntregas();" value="Novo">Adicionar Entrega</button>
+												</div>
+												<div>
+													<table id="tb_entregasSolucao" tablename="tb_entregasSolucao" class="table table-hover" noaddbutton="true" nodeletebutton="true" addbuttonclass="btn btn-default  btn-info">
+														<thead>
+															<tr>
+																<td style="min-width:5px;">
+																</td>
+																<td style="min-width:10px;">
+																	<label>Código da Solução</label>
+																</td>
+	
+																<td style="min-width:150px;">
+																		<label>Descrição da entrega</label>
+																</td>
+	
+																<td style="min-width:300px;">
+																	<label>Entregas</label>
+																</td>
+															</tr>
+														</thead>
+	
+														<tbody>
+															<tr>
+	
+																<td style="width: 5%;">
+																	<button type="button" class="btn btn-default  btn-danger" id="del_tbEntregasSolucao" name="del_tbEntregasSolucao"	onclick="removeFilho(this);adicionaCodigoAutomatico();">X</button>
+																</td>
+																
+																<td style="width: 10%;">
+																	<input type="text" name="txt_codEntrega" id="txt_codEntrega" class="form-control" readonly/>
+																</td>
+																<td style="width: 30%;">
+																	<input type="text" name="txt_entregasSolucao" id="txt_entregasSolucao" class="form-control"/>
+																</td>
+	
+																<td style="width: 65%;">
+																	<textarea rows="5" cols="8" name="ta_entregaSolucao" id="ta_entregaSolucao" class="form-control"></textarea>	
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>
+				</nav>
+			</form>
+		</div>
+	</body>
+</html>
